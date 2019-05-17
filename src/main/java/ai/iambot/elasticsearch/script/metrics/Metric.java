@@ -2,5 +2,5 @@ package ai.iambot.elasticsearch.script.metrics;
 
 public interface Metric {
 
-    double metric(double[] v2);
+    float metric(float[] v2);
 }

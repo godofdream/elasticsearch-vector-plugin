@@ -1,12 +1,12 @@
 package ai.iambot.elasticsearch.script.metrics;
 
 public class CosineMetric extends DotMetric{
-    public CosineMetric(double[] inputVector){
+    public CosineMetric(float[] inputVector){
         super(inputVector);
     }
 
     @Override
-    public double metric(double[] queryVector) {
+    public float metric(float[] queryVector) {
         DotMetricResult dot = super.dotMetric(queryVector);
         if ( inputVectorMagnitude == 0.0 || dot.getQueryVectorNorm() == 0.0){
             return 0.0;

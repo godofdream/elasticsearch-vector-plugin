@@ -1,18 +1,18 @@
 package ai.iambot.elasticsearch.script.metrics;
 
 public class DotMetricResult {
-    double queryVectorNorm;
-    double dot;
-    public DotMetricResult(double queryVectorNorm, double dot){
+    float queryVectorNorm;
+    float dot;
+    public DotMetricResult(float queryVectorNorm, float dot){
         this.queryVectorNorm = queryVectorNorm;
                 this.dot = dot;
     }
 
-    public double getQueryVectorNorm() {
+    public float getQueryVectorNorm() {
         return queryVectorNorm;
     }
 
-    public double getDot() {
+    public float getDot() {
         return dot;
     }
 }

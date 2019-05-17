@@ -22,8 +22,6 @@ import org.apache.lucene.store.ByteArrayDataInput;
 import org.elasticsearch.script.ScoreScript;
 import org.elasticsearch.search.lookup.SearchLookup;
 
-import java.nio.ByteBuffer;
-import java.nio.DoubleBuffer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -31,9 +29,6 @@ import java.util.Map;
 
 public final class VectorScoreScript extends ScoreScript {
 
-    public static final String SCRIPT_NAME = "binary_vector_score";
-
-    private static final int DOUBLE_SIZE = 8;
 
     public final String field;
     private final SearchLookup lookup;
@@ -45,7 +40,7 @@ public final class VectorScoreScript extends ScoreScript {
         this.docId = docId;
     }
 
-    private final double[] inputVector;
+    private final float[] inputVector;
 
 
     private final HashMap<String, MetricProvider> metrics = new HashMap<String, MetricProvider>(){{
@@ -86,9 +81,9 @@ public final class VectorScoreScript extends ScoreScript {
         final Object vector = params.get("vector");
         if(vector != null) {
             final ArrayList<Double> tmp = (ArrayList<Double>) vector;
-            inputVector = new double[tmp.size()];
+            inputVector = new float[tmp.size()];
             for (int i = 0; i < inputVector.length; i++) {
-                inputVector[i] = tmp.get(i);
+                inputVector[i] = tmp.get(i).floatValue();
             }
         } else {
             final Object encodedVector = params.get("encoded_vector");

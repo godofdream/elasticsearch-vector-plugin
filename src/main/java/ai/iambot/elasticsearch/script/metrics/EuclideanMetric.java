@@ -1,13 +1,13 @@
 package ai.iambot.elasticsearch.script.metrics;
 
 public class EuclideanMetric implements Metric{
-    double[] inputVector;
-    public EuclideanMetric(double[] inputVector){
+    float[] inputVector;
+    public EuclideanMetric(float[] inputVector){
         this.inputVector = inputVector;
     }
 
     @Override
-    public double metric(double[] queryVector) {
+    public float metric(float[] queryVector) {
         return TSSSHelper.Euclidean(this.inputVector, queryVector);
     }
 }
